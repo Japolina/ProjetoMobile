@@ -1,6 +1,5 @@
 import React from 'react';
-import {Text, TextInput, View} from 'react-native';
-import ResultadoApp3 from './ResultadoApp3';
+import {Image, ScrollView, Text, TextInput, View} from 'react-native';
 
 type NomeProps = {
     nome: string;
@@ -8,28 +7,59 @@ type NomeProps = {
 
 const App3 = (props: NomeProps) => {
   return (
+    <>
     <View>
-      <Text>Olá, eu sou...{props.nome}</Text>
-      <TextInput
-        style={{
-          height: 40,
-          borderColor: 'gray',
-          borderWidth: 1,
-        }}
-        defaultValue="Meu nome!"
-        
-      />
+      <Text>Olá, eu sou {props.nome}</Text>
     </View>
-
+    
+      </>
   );
 };
+ const Imagens = () => {
+  return <ScrollView>
+    <View>
+        <Image
+          source={{
+            uri: 'https://reactnative.dev/docs/assets/p_cat2.png',
+          }}
+          style={{ width: 200, height: 200 }} />
+          <Image
+          source={{
+            uri: 'https://reactnative.dev/docs/assets/p_cat1.png',
+          }}
+          style={{ width: 200, height: 200 }} />
+          <Image
+          source={{
+            uri: 'https://reactnative.dev/docs/assets/p_cat2.png',
+          }}
+          style={{ width: 200, height: 200 }} />
+          <Image
+          source={{
+            uri: 'https://reactnative.dev/docs/assets/p_cat1.png',
+          }}
+          style={{ width: 200, height: 200 }} />
+          <Image
+          source={{
+            uri: 'https://reactnative.dev/docs/assets/p_cat2.png',
+          }}
+          style={{ width: 200, height: 200 }} />
+          <Image
+          source={{
+            uri: 'https://reactnative.dev/docs/assets/p_cat1.png',
+          }}
+          style={{ width: 200, height: 200 }} />
+          </View>
+      </ScrollView>
+ }
+
 const Resul = () => {
     return (
       <View>
-        <App3 nome= "" />
+        <App3 nome="Érica"  />
+        <Imagens></Imagens>
       </View>
     );
   };
 
   
-export default Resul;
+export {Resul, Imagens};

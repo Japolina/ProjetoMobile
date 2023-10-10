@@ -11,33 +11,24 @@ import {
     useColorScheme,
     View,
 } from 'react-native';
+import ListaFlat from './ListaFlat';
+
+const lista = [
+    {key: 1, descricao: 'teste'},
+    {key: 2, descricao: 'teste2'},
+    {key: 3, descricao: 'teste3'},
+    {key: 4, descricao: 'teste4'}
+];
+
 
 const App2 = () => {
     return (
         <>
-            <Text>♥♥♥♥♥♥♥♥♥► Eu te amo! ◄♥♥♥♥♥♥♥</Text>
-            <Text>.........██▄██▄╔╗ ℓσνє ♥
-                █████▀║║╔═╦╦╦═╗▄██▄██▄
-                ─▀█▀──║╚╣╬║║║╩╣▀█████▀
-                ──────╚═╩═╩═╩═╝──▀█▀</Text>
-            <View style={styles.container}>
-                <Text>♣♣♣♣♣♣♣♣♣♣ Amor ♣♣♣♣♣♣♣♣♣</Text>
-            </View>
-            <Text>─▀██▀─▄███▄─▀██─██▀██▀▀▀█
-──██─███─███─██─██─██▄█**
-──██─▀██▄██▀─▀█▄█▀─██▀........​....✫♥¸.•°*”˜˜”*°•✫♥
-─▄██▄▄█▀▀▀─────▀──▄██▄▄▄█✫♥¸.•​°*”˜˜”*°•. ✫♥</Text>
+        <ListaFlat array={lista}/>
+        {/* <ListaSection array={listaSection}/> */}
         </>
     );
 }
 
 export default App2;
 
-const styles = StyleSheet.create ({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alightItems: 'center',
-        backgroundColor: 'red'
-    },
-});
