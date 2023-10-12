@@ -14,7 +14,8 @@ const ListaSection = (props: ListaSectionProps) => {
     renderItem={({item}) => 
         <Text style={styles.item}>
             {item.descricao}
-        </Text>}   
+        </Text>
+        }   
     renderSectionHeader={({section}) => (
         <Text style={styles.sectionHeader}>
             {section.title}
