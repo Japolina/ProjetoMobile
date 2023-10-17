@@ -3,6 +3,7 @@
 import React from 'react';
 import type { PropsWithChildren } from 'react';
 import {
+    Button,
     SafeAreaView,
     ScrollView,
     StatusBar,
@@ -12,8 +13,9 @@ import {
     View,
 } from 'react-native';
 import ListaFlat from './ListaFlat';
-import ListaSection from './ListaSection';
-import ListaNome from './ListaNome';
+import ListaSection from '../../ListaSection';
+import ListaNome from '../../ListaNome';
+import { Props } from './App';
 
 const lista = [
     { key: 1, descricao: 'teste' },

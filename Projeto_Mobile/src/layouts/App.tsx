@@ -6,19 +6,19 @@ import Principal from './Principal';
 
 
 
-type StackParamList = {
+type RootStackParamList = {
   Home: undefined;
   Detalhes: undefined;
 };
 
-type Props = NativeStackScreenProps<StackParamList, 'Home'>;
+type HomeProps = NativeStackScreenProps<RootStackParamList, 'Home'>;
 
-type HomeScreenNavigationProps = Props['navigation'];
+type HomeScreenNavigationProps = HomeProps['navigation'];
 
-type HomeScreenRouteProps = Props['route'];
+type HomeScreenRouteProps = HomeProps['route'];
 
 
-const HomeScreen = ({ navigation, route }: Props) => {
+const HomeScreen = ({ navigation, route }: HomeProps) => {
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <Principal navigation={navigation} route={route} />
@@ -51,5 +51,5 @@ const App = () => {
   );
 }
 
-export type { HomeScreenNavigationProps, HomeScreenRouteProps, Props };
+export type { HomeScreenNavigationProps, HomeScreenRouteProps, HomeProps };
 export default App;
