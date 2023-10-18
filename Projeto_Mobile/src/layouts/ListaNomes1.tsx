@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, FlatList, StyleSheet } from 'react-native';
 
-const ListaNome = ({ nomes }) => {
+const ListaNomes = ( ) => {
   const [titulo, setTitulo] = useState("Título do Componente");
-  const [nomesState, setNomes] = useState(nomes);
+  const [nomesState, setNomes] = useState('');
 
-  const atualizarNome = (index, novoNome) => {
+  const atualizarNome = (index: number, novoNome: string) => {
     const novosNomes = [...nomesState];
     novosNomes[index] = novoNome;
-    setNomes(novosNomes);
+    //setNomes(novosNomes);
   };
 
   return (
@@ -52,4 +52,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ListaNome;
+export default ListaNomes;

@@ -1,7 +1,6 @@
 import { NavigationContainer } from '@react-navigation/native';
-import { NativeStackScreenProps, createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React, { useState } from 'react';
-import { View, Text, TextInput, FlatList, StyleSheet } from 'react-native';
 import HomeScreen from '../screens/HomeScreen';
 import DetalhesScreen from '../screens/DetalhesScreen';
 

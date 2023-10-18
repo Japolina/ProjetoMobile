@@ -2,7 +2,7 @@ import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { NativeStackScreenProps, createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Text, View } from 'react-native';
-import Principal from './Principal';
+import Principal from './layouts/Principal';
 
 
 
@@ -38,8 +38,7 @@ const DetalhesScreen = () => {
   );
 }
 
-const Stack = createNativeStackNavigator();
-
+const Stack = createNativeStackNavigator<RootStackParamList>();
 const App = () => {
   return (
     <NavigationContainer>
@@ -50,6 +49,7 @@ const App = () => {
     </NavigationContainer>
   );
 }
+
 
 export type { HomeScreenNavigationProps, HomeScreenRouteProps, HomeProps };
 export default App;

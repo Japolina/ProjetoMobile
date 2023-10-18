@@ -13,9 +13,14 @@ import {
     View,
 } from 'react-native';
 import ListaFlat from './ListaFlat';
-import ListaSection from '../../ListaSection';
-import ListaNome from '../../ListaNome';
-import { Props } from './App';
+import ListaSection from './ListaSection';
+import ListaNome from './ListaNome';
+import Ex1 from './Ex1';
+import Ex2 from './Ex2';
+import Ex3 from './Ex3';
+import { HomeProps } from '../App';
+import { Resul } from './App3';
+import Resultado from './Login';
 
 const lista = [
     { key: 1, descricao: 'teste' },
@@ -43,20 +48,23 @@ const listaNome = [
 //         </>
 //     );
 // }
-const Principal = ({ navigation, route }: Props) => {
+const Principal = ({ navigation, route }: HomeProps) => {
     return (
         <>
+            <View style={styles.botao}/>
             <Button
                 title="Go to Details"
-                onPress={() => navigation.navigate('Detalhes')} />
-            <Ex1 titulo="Teste" />
-            <Ex2 />
-            <Ex3 />
-            <ListaFlat array={lista} />
-            <ListaSection array={listaSection} />
+                onPress={() => navigation.navigate('Detalhes')}/>
+            <Resultado/>
         </>
     );
 }
 
 export default Principal;
+
+const styles = StyleSheet.create({
+    botao: {
+        marginTop: 50,
+    },
+});
 
