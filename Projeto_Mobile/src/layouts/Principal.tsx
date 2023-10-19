@@ -18,9 +18,10 @@ import ListaNome from './ListaNome';
 import Ex1 from './Ex1';
 import Ex2 from './Ex2';
 import Ex3 from './Ex3';
-import { HomeProps } from '../App';
 import { Resul } from './App3';
-import Resultado from './Login';
+import Resultado from './Tela_Login';
+import Tela_Login from './Tela_Login';
+import { HomeProps } from '../types';
 
 const lista = [
     { key: 1, descricao: 'teste' },
@@ -51,11 +52,11 @@ const listaNome = [
 const Principal = ({ navigation, route }: HomeProps) => {
     return (
         <>
-            <View style={styles.botao}/>
-            <Button
-                title="Go to Details"
-                onPress={() => navigation.navigate('Detalhes')}/>
-            <Resultado/>
+        <View style={styles.botao}/>
+        <Button
+            title="Go to Details"
+            onPress={() => navigation.navigate('Detalhes')}/>
+            
         </>
     );
 }
@@ -64,7 +65,7 @@ export default Principal;
 
 const styles = StyleSheet.create({
     botao: {
-        marginTop: 50,
+        marginTop: -700,
     },
 });
 
