@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Alert, Image, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
+import { Alert, Button, Image, Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
 import { LoginProps } from '../types';
 
 import auth from '@react-native-firebase/auth';
@@ -9,15 +9,33 @@ export default ({ navigation, route }: LoginProps) => {
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
     const [isLogin, setIsLogin] = useState(false);
+    const [isCadastrar, setIsCadastrar] = useState(false);
 
     function logar() {
         setIsLogin(true);
 
+        try {
+            auth()
+                .signInWithEmailAndPassword(email, senha)
+                .then(() => { navigation.navigate('Home') })
+                .catch((error) => console.log(error))
+                .finally(() => setIsLogin(false))
+        } catch (error) {
+            console.log(error);
+            setIsLogin(false)
+        }
+    }
+
+    function cadastrar() {
+        setIsLogin(true);
+
         auth()
-            .signInWithEmailAndPassword(email, senha)
-            .then(() => { navigation.navigate('Home') })
-            .catch((error) => console.log(error))
-            .finally(() => setIsLogin(false))
+            .createUserWithEmailAndPassword(email, senha)
+            .then(() => {
+                Alert.alert("Conta",
+                    "Cadastrado com sucesso")
+                navigation.navigate('Login')
+            });
     }
 
     function redefinirSenha() {
@@ -33,26 +51,55 @@ export default ({ navigation, route }: LoginProps) => {
 
     return (
         <>
-            
             <View style={styles.container}>
 
                 {/* FOTO */}
                 <View>
-                <Image style={styles.imagem} source={{
-                    uri: 'https://reactnative.dev/docs/assets/p_cat1.png',
-                }} />
+                    <Image style={styles.imagem} source={{
+                        uri: 'https://reactnative.dev/docs/assets/p_cat1.png',
+                    }} />
                 </View>
 
                 {/* EMAIL OU LOGIN */}
-                <View style={styles.container_Login}>
-                    <Text style={styles.texto}>Teste</Text>
+                <View style={styles.containerEmail}>
+                    <Text style={styles.texto}>Email</Text>
                     <TextInput
-                        style={{ height: 110 }}
+                        style={{ height: 50, color: 'black', backgroundColor: '#DCDCDC', borderRadius: 20 }}
                         placeholder="Digite aqui!"
-                        onChangeText={newText => setText(newText)}
+                        onChangeText={(Text) => setEmail(Text)}
                     />
                 </View>
+                {/* SENHA */}
+                <View style={styles.containerSenha}>
+                    <Text style={styles.texto2}>Senha</Text>
+                    <TextInput
+                        style={styles.botao}
+                        placeholder="Digite aqui!"
+                        onChangeText={(Senha) => setSenha(Senha)}
+                    />
+                </View>
+
+
+
+                <Pressable
+                    style={{ height: 1 }}
+                    onPress={() => logar()}
+                    disabled= {isLogin}>
+                <Text>Entrar</Text>
+                </Pressable>
+
+                <Pressable
+                    style={{ height: }}
+                    onPress={() => cadastrar()}
+                    disabled= {isCadastrar}>
+                <Text style={{color: 'black', backgroundColor: 'black'}}>Cadastrar</Text>
+                </Pressable>
+
+
             </View>
+
+
+
         </>
     )
 }
@@ -60,27 +107,42 @@ export default ({ navigation, route }: LoginProps) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        alignItems: 'flex-start',
-        flexDirection: 'row',
+        width: 300,
         backgroundColor: '#E0F0FF',
-        marginTop: 50,
-        width: 200,
-        maxHeight: 150,
     },
+    containerSenha: {
+        marginTop: -50,
+    },
+    containerEmail: {
+        marginTop: -50,
+    },
+
     container_Login: {
-        flex: 1,
-        backgroundColor: 'blue'
     },
     imagem: {
-        flex: 1,
         width: 200,
-        height: 160,
-        justifyContent: 'center',
-        alignContent: 'center'
+        height: 200,
+        alignItems: 'center',
+        left: 40,
+        marginBottom: 0,
     },
     texto: {
         padding: 100,
         color: 'black',
-        marginTop: -50,
+        marginBottom: -80,
+        right: 100,
+
+    },
+    texto2: {
+        padding: 100,
+        color: 'black',
+        right: 100,
+        marginBottom: -100
+    },
+    botao: {
+        height: 50,
+        color: 'black',
+        backgroundColor: '#DCDCDC',
+        borderRadius: 20,
     }
 });

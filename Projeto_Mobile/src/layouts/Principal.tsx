@@ -22,6 +22,7 @@ import { Resul } from './App3';
 import Resultado from './Tela_Login';
 import Tela_Login from './Tela_Login';
 import { HomeProps } from '../types';
+import HomeNavigator from '../navigation/home.navigator';
 
 const lista = [
     { key: 1, descricao: 'teste' },
@@ -52,10 +53,10 @@ const listaNome = [
 const Principal = ({ navigation, route }: HomeProps) => {
     return (
         <>
-        <View style={styles.botao}/>
-        <Button
-            title="Go to Details"
-            onPress={() => navigation.navigate('Detalhes')}/>
+            <View style={styles.botao} />
+            <Button
+                title="Go to Details"
+                onPress={() => navigation.navigate('Detalhes')} />
             
         </>
     );

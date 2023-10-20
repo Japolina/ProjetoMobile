@@ -4,6 +4,7 @@ import { View, Text, TextInput, FlatList, StyleSheet } from 'react-native';
 
 
 type RootStackParamList = {
+  Cadastro: undefined;
   Login: undefined;
   Home: undefined;
   Detalhes: undefined;
@@ -17,5 +18,9 @@ type HomeProps = NativeStackScreenProps<RootStackParamList, 'Home'>;
 
 type LoginProps = NativeStackScreenProps<RootStackParamList, 'Login'>;
 
-export type {HomeProps, LoginProps, RootStackParamList};
+// CadastroScreen
+
+type CadastroProps = NativeStackScreenProps<RootStackParamList, 'Cadastro'>;
+
+export type {HomeProps, LoginProps, CadastroProps, RootStackParamList};
 
