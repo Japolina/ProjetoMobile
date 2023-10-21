@@ -6,6 +6,8 @@ import DetalhesScreen from '../screens/DetalhesScreen';
 import LoginScreen from '../screens/LoginScreen';
 import { RootStackParamList } from '../types';
 import CadastroScreen from '../screens/CadastroScreen';
+import CadNotaScreen from '../screens/CadNotaScreen';
+import NotasScreen from '../screens/NotasScreen';
 
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -18,6 +20,8 @@ const HomeNavigator = () => {
         <Stack.Screen name="Cadastro" component={CadastroScreen} />
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="Detalhes" component={DetalhesScreen} />
+        <Stack.Screen name="CadNota" component={CadNotaScreen} />
+        <Stack.Screen name="Notas" component={NotasScreen} />
       </Stack.Navigator>
   );
 };

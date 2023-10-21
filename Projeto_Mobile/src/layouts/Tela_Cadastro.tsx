@@ -8,6 +8,7 @@ export default ({ navigation, route }: CadastroProps) => {
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
     const [isLoading, setIsLoading] = useState(false);
+
    
     async function cadastrar() {
         setIsLoading(true);
@@ -31,13 +32,51 @@ export default ({ navigation, route }: CadastroProps) => {
 
     return (
         <>
-        <View><Text> Teste </Text></View>
+        <View style={styles.container}>
+            <Text style={{color: 'black'}}>Email</Text>
+            <TextInput 
+                style={styles.caixa_texto}
+                onChangeText={(text) => { setEmail(text) }} />
+            <Text style={{color: 'black'}}>Senha</Text>
+            <TextInput 
+                style={styles.caixa_texto}
+                onChangeText={(text) => { setSenha(text) }} />
+            <Pressable
+                style={styles.botao}
+                onPress={() => cadastrar()}
+                disabled={isLoading}>
+                <Text style={styles.desc_botao}>Cadastrar</Text>
+            </Pressable>
+        </View>
         
         </>
-
-
 
     )
 
 }
-
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    caixa_texto: {
+        width: '70%',
+        color: 'black',
+        borderWidth: 1,
+        borderRadius: 15,
+        margin: 3,
+        marginBottom: 20
+    },
+    botao: {
+        justifyContent: 'center',
+        backgroundColor: 'purple',
+        paddingVertical: 10,
+        paddingHorizontal: 30,
+        borderRadius: 15,
+        alignItems: 'center'
+    },
+    desc_botao: {
+        fontSize: 20,
+    }
+});

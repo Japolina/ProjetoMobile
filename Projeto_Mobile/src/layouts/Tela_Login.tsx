@@ -10,6 +10,7 @@ export default ({ navigation, route }: LoginProps) => {
     const [senha, setSenha] = useState('');
     const [isLogin, setIsLogin] = useState(false);
     const [isCadastrar, setIsCadastrar] = useState(false);
+    const [isRedefinir, setIsRedefinir] = useState(false);
 
     function logar() {
         setIsLogin(true);
@@ -50,99 +51,76 @@ export default ({ navigation, route }: LoginProps) => {
     }
 
     return (
-        <>
-            <View style={styles.container}>
+        <View style={styles.container}>
+        <View style={styles.container_login}>
+            <Text  style={{color: 'black'}}>Login</Text>
+            <TextInput
+                style={styles.caixa_texto}
+                onChangeText={(text) => { setEmail(text) }} />
+            
 
-                {/* FOTO */}
-                <View>
-                    <Image style={styles.imagem} source={{
-                        uri: 'https://reactnative.dev/docs/assets/p_cat1.png',
-                    }} />
-                </View>
+            <Text style={{color: 'black'}}>Senha</Text>
+            <TextInput
+                style={styles.caixa_texto}
+                onChangeText={(text) => { setSenha(text) }} />
+            
 
-                {/* EMAIL OU LOGIN */}
-                <View style={styles.containerEmail}>
-                    <Text style={styles.texto}>Email</Text>
-                    <TextInput
-                        style={{ height: 50, color: 'black', backgroundColor: '#DCDCDC', borderRadius: 20 }}
-                        placeholder="Digite aqui!"
-                        onChangeText={(Text) => setEmail(Text)}
-                    />
-                </View>
-                {/* SENHA */}
-                <View style={styles.containerSenha}>
-                    <Text style={styles.texto2}>Senha</Text>
-                    <TextInput
-                        style={styles.botao}
-                        placeholder="Digite aqui!"
-                        onChangeText={(Senha) => setSenha(Senha)}
-                    />
-                </View>
+            <Pressable
+                style={styles.botao}
+                onPress={() => logar()}
+                disabled={isLogin}>
+                <Text style={styles.desc_botao}>Entrar</Text>
+            </Pressable>
+        </View>
+        <View style={styles.container_botoes}>
+            <Pressable
+                style={styles.botao}
+                onPress={() => { navigation.navigate('Cadastro')}}>
+                <Text style={styles.desc_botao}>Cadastrar-se</Text>
+            </Pressable>
 
-
-
-                <Pressable
-                    style={{ height: 1 }}
-                    onPress={() => logar()}
-                    disabled= {isLogin}>
-                <Text>Entrar</Text>
-                </Pressable>
-
-                <Pressable
-                    style={{ height: }}
-                    onPress={() => cadastrar()}
-                    disabled= {isCadastrar}>
-                <Text style={{color: 'black', backgroundColor: 'black'}}>Cadastrar</Text>
-                </Pressable>
-
-
-            </View>
-
-
-
-        </>
+            <Pressable
+                style={styles.botao}
+                onPress={redefinirSenha}>
+                <Text style={styles.desc_botao}>Esqueci a senha</Text>
+            </Pressable>
+        </View>
+    </View>
     )
 }
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        width: 300,
-        backgroundColor: '#E0F0FF',
+        backgroundColor: '#F8F8FF'
     },
-    containerSenha: {
-        marginTop: -50,
+    container_login: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center'
     },
-    containerEmail: {
-        marginTop: -50,
+    container_botoes: {
+        height: 100,
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        alignItems: 'center'
     },
-
-    container_Login: {
-    },
-    imagem: {
-        width: 200,
-        height: 200,
-        alignItems: 'center',
-        left: 40,
-        marginBottom: 0,
-    },
-    texto: {
-        padding: 100,
+    caixa_texto: {
+        width: '70%',
         color: 'black',
-        marginBottom: -80,
-        right: 100,
-
-    },
-    texto2: {
-        padding: 100,
-        color: 'black',
-        right: 100,
-        marginBottom: -100
+        borderWidth: 1,
+        borderRadius: 15,
+        margin: 3,
+        marginBottom: 20
     },
     botao: {
-        height: 50,
-        color: 'black',
-        backgroundColor: '#DCDCDC',
-        borderRadius: 20,
+        justifyContent: 'center',
+        backgroundColor: 'purple',
+        paddingVertical: 10,
+        paddingHorizontal: 30,
+        borderRadius: 15,
+    },
+    desc_botao: {
+        fontSize: 20
     }
 });
