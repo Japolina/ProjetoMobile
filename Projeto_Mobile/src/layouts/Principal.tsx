@@ -57,7 +57,12 @@ const Principal = ({ navigation, route }: HomeProps) => {
             <Button
                 title="Go to Details"
                 onPress={() => navigation.navigate('Detalhes')} />
-            
+            <Button
+                title="Minhas Notas"
+                onPress={() => navigation.navigate('Notas')} />
+            <Button
+                title="Cadastro de Notas"
+                onPress={() => navigation.navigate('CadNota')} />
         </>
     );
 }
@@ -66,7 +71,7 @@ export default Principal;
 
 const styles = StyleSheet.create({
     botao: {
-        marginTop: -700,
+        marginTop: -600,
     },
 });
 

@@ -8,6 +8,7 @@ import { RootStackParamList } from '../types';
 import CadastroScreen from '../screens/CadastroScreen';
 import CadNotaScreen from '../screens/CadNotaScreen';
 import NotasScreen from '../screens/NotasScreen';
+import HomeExerScreen from '../screens/HomeExerScreen';
 
 
 const Stack = createNativeStackNavigator<RootStackParamList>();

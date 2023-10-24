@@ -1,32 +1,29 @@
 import React, { useState } from 'react';
-import { NotasProps } from '../types';
-import { INotas } from '../models/INotas';
 import { useFocusEffect } from '@react-navigation/native';
 
 import firestore from "@react-native-firebase/firestore";
 import { FlatList, StyleSheet, Text, View } from 'react-native';
+import { ProdutosProps } from '../types2';
+import { IProdutos } from '../models/IProdutos';
 
-export default ({ navigation, route }: NotasProps) => {
-    const [notas, setNotas] = useState([] as INotas[]);
-    const [isLogin, setIsLogin] = useState(false);
+export default ({ navigation, route }: ProdutosProps) => {
+    const [produtos, setProdutos] = useState([] as IProdutos[]);
 
     useFocusEffect(() => {
-        setIsLogin(true);
 
         const subscribe = firestore()
-        .collection('notas')
+        .collection('produtos')
         .onSnapshot(querySnapshot => {
             const data = querySnapshot.docs.map(doc => {
 
                 return {
-                    id: doc.id,
+                    codigo: doc.id,
                     ...doc.data()
                 }
 
-            }) as INotas[];
+            }) as IProdutos[];
 
-            setNotas(data);
-            setIsLogin(false);
+            setProdutos(data);
         });
 
         return () => subscribe();
@@ -34,15 +31,16 @@ export default ({ navigation, route }: NotasProps) => {
     
     return(
         <View>
-            <Text style={{fontSize: 30}}>Listagem de Notas</Text>
+            <Text style={{fontSize: 30, color: 'black'}}>Listagem de Produtos</Text>
             <FlatList
-            data={notas}
+            data={produtos}
             renderItem={(info) => {
                 return (
                     <View style={styles.card}>
-                        <Text>{info.index}</Text>
-                        <Text>{info.item.titulo}</Text>
-                        <Text>{info.item.descricao}</Text>
+                        <Text style={styles.texto}>{info.index}</Text>
+                        <Text style={styles.texto}>{info.item.codigo}</Text>
+                        <Text style={styles.texto}>{info.item.nomeProduto}</Text>
+                        <Text style={styles.texto}>{info.item.preco}</Text>
                     </View>
                 );
             }}>
@@ -54,6 +52,9 @@ export default ({ navigation, route }: NotasProps) => {
 
 const styles = StyleSheet.create({
     card: {
-
+        flex:1, 
+    },
+    texto: {
+        color: 'black'
     },
 });

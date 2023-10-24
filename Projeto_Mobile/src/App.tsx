@@ -4,11 +4,12 @@ import { NativeStackScreenProps, createNativeStackNavigator } from '@react-navig
 import { Text, View } from 'react-native';
 import Principal from './layouts/Principal';
 import HomeNavigator from './navigation/home.navigator';
+import HomeNavigator2 from './navigation/home.navigatoer2';
 
 const App = () => {
   return (
     <NavigationContainer>
-      <HomeNavigator/>
+      <HomeNavigator2/>
     </NavigationContainer>
   );
 }
