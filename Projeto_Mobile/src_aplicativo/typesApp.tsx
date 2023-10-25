@@ -1,0 +1,48 @@
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+
+
+type RootStackParamListUsu = {
+  CadastroUsuario: undefined;
+  LoginUsuario: undefined;
+  TelaInicial: undefined;
+  CadastroCliente: undefined;
+  CadastroAtend: undefined;
+  ListaClientes: undefined;
+  ListaAtend: undefined;
+};
+
+
+// Login 
+type LoginUsuProps = NativeStackScreenProps<RootStackParamListUsu, 'LoginUsuario'>;
+
+// Cadastro Usuario
+
+type CadUsuProps = NativeStackScreenProps<RootStackParamListUsu, 'CadastroUsuario'>;
+
+// Tela Inicial
+
+type TelaInicialProps = NativeStackScreenProps<RootStackParamListUsu, 'TelaInicial'>;
+
+// Cadastro Cliente
+
+type CadClienteProps = NativeStackScreenProps<RootStackParamListUsu, 'CadastroCliente'>;
+
+// Lista Clientes
+
+type ListClientesProps = NativeStackScreenProps<RootStackParamListUsu, 'ListaClientes'>;
+
+// Cadastro Atendimento
+
+type CadAtendProps = NativeStackScreenProps<RootStackParamListUsu, 'CadastroAtend'>;
+
+// Lista Atendimento
+
+type ListAtendProps = NativeStackScreenProps<RootStackParamListUsu, 'ListaAtend'>;
+
+
+
+
+export type {LoginUsuProps, CadUsuProps, TelaInicialProps, 
+    CadAtendProps, CadClienteProps, ListClientesProps,
+    ListAtendProps, RootStackParamListUsu};
+

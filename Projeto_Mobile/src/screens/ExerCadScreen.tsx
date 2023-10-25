@@ -4,7 +4,8 @@ import ExerCadastro from '../layouts/ExerCadastro';
 import { CadProdutoProps } from '../types2';
 
 
-const ExerCadScreen = ({ navigation, route }: CadastroProdutoProps) => {
+
+const ExerCadScreen = ({ navigation, route }: CadProdutoProps) => {
     return (
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
         <ExerCadastro navigation={navigation} route={route} />

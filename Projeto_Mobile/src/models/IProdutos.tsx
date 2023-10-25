@@ -1,6 +1,6 @@
 export type IProdutos = {
     codigo: string,
-    nome: string,
-    valor: string,
+    nomeProduto: string,
+    preco: string,
     created_at: Date
 }

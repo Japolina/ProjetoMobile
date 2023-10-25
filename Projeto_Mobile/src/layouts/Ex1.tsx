@@ -6,11 +6,11 @@ import {
   View
 } from 'react-native';
 
-type Ex1Props = {
+type Exer1Props = {
     titulo: string;
 }
 
-const Ex1 = (props: Ex1Props) => {
+const Ex1 = (props: Exer1Props) => {
     return <>
         <View style={styles.container}>
             <Text>{props.titulo}</Text>
