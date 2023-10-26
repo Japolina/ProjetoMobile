@@ -7,11 +7,11 @@ import { CadastroProps } from '../types';
 export default ({ navigation, route }: CadastroProps) => {
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
-    const [isLoading, setIsLoading] = useState(false);
+    const [isLogin, setIsLogin] = useState(false);
 
    
     async function cadastrar() {
-        setIsLoading(true);
+        setIsLogin(true);
         
         if (email && senha){
 
@@ -44,7 +44,7 @@ export default ({ navigation, route }: CadastroProps) => {
             <Pressable
                 style={styles.botao}
                 onPress={() => cadastrar()}
-                disabled={isLoading}>
+                disabled={isLogin}>
                 <Text style={styles.desc_botao}>Cadastrar</Text>
             </Pressable>
         </View>

@@ -3,6 +3,7 @@ import { Alert, Button, Image, Pressable, ScrollView, StyleSheet, Text, TextInpu
 import { LoginProps } from '../types';
 
 import auth from '@react-native-firebase/auth';
+import Carregamento from './Tela_Carregamento';
 
 
 export default ({ navigation, route }: LoginProps) => {
@@ -52,40 +53,43 @@ export default ({ navigation, route }: LoginProps) => {
 
     return (
         <View style={styles.container}>
-        <View style={styles.container_login}>
-            <Text  style={{color: 'black'}}>Login</Text>
-            <TextInput
-                style={styles.caixa_texto}
-                onChangeText={(text) => { setEmail(text) }} />
+
+            <Carregamento isLogin={isLogin} />
             
+            <View style={styles.container_login}>
+                <Text style={{ color: 'black' }}>Login</Text>
+                <TextInput
+                    style={styles.caixa_texto}
+                    onChangeText={(text) => { setEmail(text) }} />
 
-            <Text style={{color: 'black'}}>Senha</Text>
-            <TextInput
-                style={styles.caixa_texto}
-                onChangeText={(text) => { setSenha(text) }} />
-            
 
-            <Pressable
-                style={styles.botao}
-                onPress={() => logar()}
-                disabled={isLogin}>
-                <Text style={styles.desc_botao}>Entrar</Text>
-            </Pressable>
+                <Text style={{ color: 'black' }}>Senha</Text>
+                <TextInput
+                    style={styles.caixa_texto}
+                    onChangeText={(text) => { setSenha(text) }} />
+
+
+                <Pressable
+                    style={styles.botao}
+                    onPress={() => logar()}
+                    disabled={isLogin}>
+                    <Text style={styles.desc_botao}>Entrar</Text>
+                </Pressable>
+            </View>
+            <View style={styles.container_botoes}>
+                <Pressable
+                    style={styles.botao}
+                    onPress={() => { navigation.navigate('Cadastro') }}>
+                    <Text style={styles.desc_botao}>Cadastrar-se</Text>
+                </Pressable>
+
+                <Pressable
+                    style={styles.botao}
+                    onPress={redefinirSenha}>
+                    <Text style={styles.desc_botao}>Esqueci a senha</Text>
+                </Pressable>
+            </View>
         </View>
-        <View style={styles.container_botoes}>
-            <Pressable
-                style={styles.botao}
-                onPress={() => { navigation.navigate('Cadastro')}}>
-                <Text style={styles.desc_botao}>Cadastrar-se</Text>
-            </Pressable>
-
-            <Pressable
-                style={styles.botao}
-                onPress={redefinirSenha}>
-                <Text style={styles.desc_botao}>Esqueci a senha</Text>
-            </Pressable>
-        </View>
-    </View>
     )
 }
 

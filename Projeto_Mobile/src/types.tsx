@@ -12,6 +12,7 @@ type RootStackParamList = {
   Detalhes: undefined;
   HomeExer: undefined;
   Exer1: undefined;
+  AlterarNota: {id: string; palavra: string};
 };
 
 
@@ -34,7 +35,11 @@ type CadNotaProps = NativeStackScreenProps<RootStackParamList, 'CadNota'>;
 
 type NotasProps  = NativeStackScreenProps<RootStackParamList, 'Notas'>;
 
+// Alterar Nota
+
+type AlterarNotaProps  = NativeStackScreenProps<RootStackParamList, 'AlterarNota'>;
+
 
 export type {HomeProps, LoginProps, CadastroProps, CadNotaProps,
-   NotasProps, RootStackParamList};
+   NotasProps, AlterarNotaProps, RootStackParamList};
 

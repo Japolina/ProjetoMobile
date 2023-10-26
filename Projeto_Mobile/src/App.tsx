@@ -9,7 +9,7 @@ import HomeNavigator2 from './navigation/home.navigatoer2';
 const App = () => {
   return (
     <NavigationContainer>
-      <HomeNavigator2/>
+      <HomeNavigator/>
     </NavigationContainer>
   );
 }

@@ -1,4 +1,4 @@
-import { NavigationContainer } from '@react-navigation/native';
+
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React, { useState } from 'react';
 import HomeScreen from '../screens/HomeScreen';
@@ -8,7 +8,7 @@ import { RootStackParamList } from '../types';
 import CadastroScreen from '../screens/CadastroScreen';
 import CadNotaScreen from '../screens/CadNotaScreen';
 import NotasScreen from '../screens/NotasScreen';
-import HomeExerScreen from '../screens/HomeExerScreen';
+import AlterarNotaScreen from '../screens/AlterarNotaScreen';
 
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -23,6 +23,7 @@ const HomeNavigator = () => {
         <Stack.Screen name="Detalhes" component={DetalhesScreen} />
         <Stack.Screen name="CadNota" component={CadNotaScreen} />
         <Stack.Screen name="Notas" component={NotasScreen} />
+        <Stack.Screen name="AlterarNota" component={AlterarNotaScreen} />
       </Stack.Navigator>
   );
 };
