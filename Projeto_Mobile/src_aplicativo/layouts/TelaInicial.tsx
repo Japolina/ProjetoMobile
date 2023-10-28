@@ -14,16 +14,16 @@ const TelaInicial= ({ navigation, route }: TelaInicialProps) => {
                 onPress={() => navigation.navigate('TelaInicial')} />
             <Button
                 title="Cadastro de Clientes"
-                onPress={() => navigation.navigate('CadastroClientes')} />
+                onPress={() => navigation.navigate('CadastroCliente')} />
             <Button
                 title="Lista de Clientes"
-                onPress={() => navigation.navigate('TelaClientes')} />
+                onPress={() => navigation.navigate('ListaClientes')} />
             <Button
                 title="Agendar Atendimento"
-                onPress={() => navigation.navigate('CadastroAten')} />
+                onPress={() => navigation.navigate('CadastroAtend')} />
             <Button
                 title="Lista de Agendamento"
-                onPress={() => navigation.navigate('TelaAtend')} />
+                onPress={() => navigation.navigate('ListaAtend')} />
         </>
     );
 }

@@ -1,4 +1,6 @@
 export type IAtendimento = {
-    dataHora: String,
-    descricao: String,
+    id: string;
+    cliente: string;
+    dataHora: string,
+    descricao: string,
 }

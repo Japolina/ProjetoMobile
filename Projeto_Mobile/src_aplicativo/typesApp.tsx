@@ -9,6 +9,14 @@ type RootStackParamListUsu = {
   CadastroAtend: undefined;
   ListaClientes: undefined;
   ListaAtend: undefined;
+  AlterarCliente: {
+    id: string; 
+    nome: string;
+    cpf: string;
+    endereco: string;
+    dataNasc: string;
+  };
+  AlterarAtend: { id: string; };
 };
 
 
@@ -39,10 +47,20 @@ type CadAtendProps = NativeStackScreenProps<RootStackParamListUsu, 'CadastroAten
 
 type ListAtendProps = NativeStackScreenProps<RootStackParamListUsu, 'ListaAtend'>;
 
+// Alterar Cliente 
+
+type AlterarClienteProps = NativeStackScreenProps<RootStackParamListUsu, 'AlterarCliente'>;
+
+// Alterar Atendimento
+
+type AlterarAtendProps = NativeStackScreenProps<RootStackParamListUsu, 'AlterarAtend'>;
 
 
 
-export type {LoginUsuProps, CadUsuProps, TelaInicialProps, 
-    CadAtendProps, CadClienteProps, ListClientesProps,
-    ListAtendProps, RootStackParamListUsu};
+export type {
+  LoginUsuProps, CadUsuProps, TelaInicialProps,
+  CadAtendProps, CadClienteProps, ListClientesProps,
+  ListAtendProps, AlterarClienteProps,
+  AlterarAtendProps, RootStackParamListUsu
+};
 

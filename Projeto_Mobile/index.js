@@ -12,4 +12,4 @@ import ListaFlat from './src/layouts/ListaFlat';
 import App2 from './src_aplicativo/App2';
 
 // AppRegistry.registerComponent(appName, () => Resul, Imagens);
-AppRegistry.registerComponent(appName, () => App);
+AppRegistry.registerComponent(appName, () => App2);

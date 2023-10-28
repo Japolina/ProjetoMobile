@@ -1,13 +1,13 @@
 import React from 'react';
 import { View } from 'react-native';
-import { AlterarNotaProps, CadastroProps } from '../types';
-import Tela_Cadastro from '../layouts/Tela_Cadastro';
+import { AlterarNotaProps} from '../types';
+import Tela_AlterarNota from '../layouts/Tela_AlterarNota';
 
 
 const AlterarNotaScreen = ({ navigation, route }: AlterarNotaProps) => {
     return (
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <Tela_Cadastro navigation={navigation} route={route} />
+        <Tela_AlterarNota navigation={navigation} route={route} />
       </View>
     );
   };

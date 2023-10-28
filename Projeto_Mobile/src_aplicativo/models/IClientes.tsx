@@ -1,7 +1,9 @@
 export type IClientes = {
-    nome: String;
-    cpf: String;
-    endereco: String;
-    dataNasc: String;
+    id: string;
+    nome: string;
+    cpf: string;
+    endereco: string;
+    dataNasc: string;
+    dadosCliente: String;
     created_at: Date;
 }

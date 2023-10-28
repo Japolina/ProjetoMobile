@@ -29,11 +29,15 @@ export default ({ navigation }: CadClienteProps) => {
             })
             .catch((error) => console.log(error));
     }
-    function NumeralInput (props){
-        const handleInputChange = (e) => {
-            const inputValue = e.target.value.replace(/\D/g, '');
-        }
-        
+
+    function dadosCliente (
+        id: String, 
+        nome: string,
+        cpf: string,
+        endereco: string,
+        dataNasc: string,
+        created_at: Date, ){
+
     }
 
     return (
