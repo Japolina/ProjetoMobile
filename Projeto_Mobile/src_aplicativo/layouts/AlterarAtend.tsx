@@ -1,16 +1,13 @@
 import React, { useEffect, useState } from "react";
 import firestore from "@react-native-firebase/firestore";
 import { AlterarClienteProps } from "../typesApp";
-import { IClientes } from "../models/IClientes";
 import { Alert, Pressable, StyleSheet, Text, TextInput, View } from "react-native";
 import Carregamento from "../../src/layouts/Tela_Carregamento";
 import { IAtendimento } from "../models/IAtendimento";
 
-
-
 export default ({ navigation, route }: AlterarClienteProps) => {
     const [id,] = useState(route.params.id);
-    const [cliente, setCliente] = useState(route.params.id);
+    const [cliente, setCliente] = useState(''); //
     const [dataHora, setDataHora] = useState('');
     const [desc, setDesc] = useState('');
     const [isLogin, setIsLogin] = useState(false);
@@ -29,8 +26,8 @@ export default ({ navigation, route }: AlterarClienteProps) => {
         } as IAtendimento;
 
         setCliente(atend.cliente);
-        setDataHora(atend.dataHora)
-        setDesc(atend.descricao)
+        setDataHora(atend.dataHora);
+        setDesc(atend.descricao);
         setIsLogin(false);
     };
 
@@ -47,7 +44,7 @@ export default ({ navigation, route }: AlterarClienteProps) => {
             .update({
                 cliente,
                 dataHora,
-                desc,
+                descricao: desc, //
                 created_at: firestore.FieldValue.serverTimestamp()
             })
             .then(() => {
