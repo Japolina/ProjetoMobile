@@ -17,7 +17,7 @@ const Stack = createNativeStackNavigator<RootStackParamListUsu>();
 const HomeNavigator = () => {
   return (
     
-      <Stack.Navigator initialRouteName="TelaInicial">
+      <Stack.Navigator initialRouteName="LoginUsuario">
         <Stack.Screen name="TelaInicial" component={TelaInicialScreen} />
         <Stack.Screen name="LoginUsuario" component={LoginUsuScreen} />
         <Stack.Screen name="CadastroUsuario" component={CadUsuScreen} />

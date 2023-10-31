@@ -8,9 +8,12 @@ import { CadClienteProps } from '../typesApp';
 export default ({ navigation }: CadClienteProps) => {
     const [nome, setNome] = useState('');
     const [cpf, setCpf] = useState('');
-    const [endereco, setEndereco] = useState('');
     const [dataNasc, setDataNasc] = useState('');
-    const [value, setValue] = useState ('');
+    const [cidade, setCidade] = useState('');
+    const [bairro, setBairro] = useState('');
+    const [endereco, setEndereco] = useState('');
+
+    const [value, setValue] = useState('');
 
     function cadastrar() {
 
@@ -19,8 +22,10 @@ export default ({ navigation }: CadClienteProps) => {
             .add({
                 nome,
                 cpf,
+                dataNasc, 
+                cidade,
+                bairro,
                 endereco,
-                dataNasc,
                 created_at: FirebaseFirestoreTypes.FieldValue.serverTimestamp()
             })
             .then(() => {
@@ -30,15 +35,6 @@ export default ({ navigation }: CadClienteProps) => {
             .catch((error) => console.log(error));
     }
 
-    function dadosCliente (
-        id: String, 
-        nome: string,
-        cpf: string,
-        endereco: string,
-        dataNasc: string,
-        created_at: Date, ){
-
-    }
 
     return (
         <>
@@ -53,22 +49,34 @@ export default ({ navigation }: CadClienteProps) => {
                     style={styles.caixa_texto}
                     onChangeText={(int) => { setCpf(int) }} />
 
-                <Text style={{ color: 'black' }}>Endereço</Text>
-                <TextInput
-                    style={styles.caixa_texto}
-                    onChangeText={(text) => { setEndereco(text) }} />
-
                 <Text style={{ color: 'black' }}>Data Nascimento</Text>
                 <TextInput
                     style={styles.caixa_texto}
                     onChangeText={(int) => { setDataNasc(int) }} />
 
+                <Text style={{ color: 'black' }}>Cidade</Text>
+                <TextInput
+                    style={styles.caixa_texto}
+                    onChangeText={(text) => { setCidade(text) }} />
 
-                <Pressable
-                    style={styles.botao}
-                    onPress={() => cadastrar()}>
-                    <Text style={styles.desc_botao}>Registra</Text>
-                </Pressable>
+                <Text style={{ color: 'black' }}>Bairro</Text>
+                <TextInput
+                    style={styles.caixa_texto}
+                    onChangeText={(text) => { setBairro(text) }} />
+
+                <Text style={{ color: 'black' }}>Endereço</Text>
+                <TextInput
+                    style={styles.caixa_texto}
+                    onChangeText={(text) => { setEndereco(text) }} />
+
+
+                <View style={styles.container_botoes}>
+                    <Pressable
+                        style={styles.botao}
+                        onPress={() => cadastrar()}>
+                        <Text style={styles.desc_botao}> Registrar </Text>
+                    </Pressable>
+                </View>
             </View>
 
         </>
@@ -84,21 +92,28 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     caixa_texto: {
-        width: '70%',
+        maxWidth: '100%',
+        height: 'auto',
         color: 'black',
         borderWidth: 1,
-        borderRadius: 4,
-        margin: 3
+        borderRadius: 15,
     },
     botao: {
         justifyContent: 'center',
-        backgroundColor: 'green',
+        backgroundColor: 'purple',
         paddingVertical: 10,
         paddingHorizontal: 30,
         borderRadius: 15,
     },
     desc_botao: {
         fontSize: 20
-    }
+    },
+    container_botoes: {
+        height: 100,
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        alignItems: 'center',
+        borderRadius: 15,
+    },
 });
 

@@ -24,7 +24,7 @@ export default ({ navigation, route }: AlterarClienteProps) => {
             .get();
 
         const atend = {
-            id: resultado.id,
+            idAtend: resultado.id,
             ...resultado.data()
         } as IAtendimento;
 
@@ -58,9 +58,8 @@ export default ({ navigation, route }: AlterarClienteProps) => {
 
     return (
         <View style={styles.container}>
-            <Carregamento isLogin={isLogin} />
             <View>
-                <Text style={{ color: 'black', fontSize: 25}}> Alterar Atendimento {id}</Text>
+                <Text style={{ color: 'black', fontSize: 25, marginBottom: 30}}> Alterar Atendimento</Text>
 
                 <Text style={{ color: 'black' }}> Data e Hora </Text>
                 <TextInput
@@ -81,6 +80,7 @@ export default ({ navigation, route }: AlterarClienteProps) => {
                 onPress={() => alterar()}
                 disabled={isLogin}>
                 <Text style={styles.desc_botao}> Alterar</Text>
+                
             </Pressable>
             </View>
         </View >
@@ -94,15 +94,18 @@ const styles = StyleSheet.create({
         alignContent: 'center'
     },
     caixa_texto: {
-        width: '70%',
+        maxWidth: '100%',
+        height: 'auto',
         color: 'black',
         borderWidth: 1,
+        borderRadius: 15,
     },
     botao: {
         justifyContent: 'center',
         backgroundColor: 'purple',
         paddingVertical: 10,
         paddingHorizontal: 30,
+        borderRadius: 15,
     },
     desc_botao: {
         fontSize: 20,

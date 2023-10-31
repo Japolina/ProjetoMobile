@@ -11,7 +11,7 @@ export default ({ navigation, route }: LoginUsuProps) => {
     const [isLogin, setIsLogin] = useState(false);
     const [isCadastrar, setIsCadastrar] = useState(false);
     const [isRedefinir, setIsRedefinir] = useState(false);
-
+    
     function logar() {
         setIsLogin(true);
 

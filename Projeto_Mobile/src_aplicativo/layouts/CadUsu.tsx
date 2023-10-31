@@ -33,6 +33,7 @@ export default ({ navigation, route }: CadUsuProps) => {
     return (
         <>
         <View style={styles.container}>
+           <View >
             <Text style={{color: 'black'}}>Email</Text>
             <TextInput 
                 style={styles.caixa_texto}
@@ -41,14 +42,16 @@ export default ({ navigation, route }: CadUsuProps) => {
             <TextInput 
                 style={styles.caixa_texto}
                 onChangeText={(text) => { setSenha(text) }} />
-            <Pressable
+            </View>    
+            <View style={styles.container_botoes} >
+                <Pressable
                 style={styles.botao}
                 onPress={() => cadastrar()}
                 disabled={isLoading}>
                 <Text style={styles.desc_botao}>Cadastrar</Text>
             </Pressable>
+            </View>
         </View>
-        
         </>
 
     )
@@ -61,12 +64,12 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     caixa_texto: {
-        width: '70%',
+        maxWidth: '100%',
+        height: 'auto',
         color: 'black',
         borderWidth: 1,
         borderRadius: 15,
-        margin: 3,
-        marginBottom: 20
+        
     },
     botao: {
         justifyContent: 'center',
@@ -74,9 +77,15 @@ const styles = StyleSheet.create({
         paddingVertical: 10,
         paddingHorizontal: 30,
         borderRadius: 15,
-        alignItems: 'center'
     },
     desc_botao: {
         fontSize: 20,
-    }
+    },
+    container_botoes: {
+        height: 100,
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        alignItems: 'center',
+        borderRadius: 15,
+    },
 });

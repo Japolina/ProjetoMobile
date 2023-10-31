@@ -5,33 +5,67 @@ import firestore from "@react-native-firebase/firestore";
 import { Alert, FlatList, Pressable, StyleSheet, Text, View } from 'react-native';
 import { IAtendimento } from '../models/IAtendimento';
 import { ListAtendProps } from '../typesApp';
+import { IClientes } from '../models/IClientes';
 
 export default ({ navigation, route }: ListAtendProps) => {
     const [atendimento, setAtendimento] = useState([] as IAtendimento[]);
     const [isLogin, setIsLogin] = useState(false);
+    const [cliente, setCliente] = useState([] as IClientes[]);
+    const [nome, setNome] = useState('');
+    const [cpf, setCpf] = useState('');
+    const [dataNasc, setDataNasc] = useState('');
+    const [cidade, setCidade] = useState('');
+    const [bairro, setBairro] = useState('');
+    const [endereco, setEndereco] = useState('');
+    const [id,] = useState('');
+    
 
     useFocusEffect(() => {
         setIsLogin(true);
 
         const subscribe = firestore()
-        .collection('atendimento')
-        .onSnapshot(querySnapshot => {
-            const data = querySnapshot.docs.map(doc => {
+            .collection('atendimento')
+            .onSnapshot(querySnapshot => {
+                const data = querySnapshot.docs.map(doc => {
 
-                return {
-                    id: doc.id,
-                    ...doc.data()
-                };
+                    return {
+                        idAtend: doc.id,
+                        ...doc.data()
+                    };
 
-            }) as IAtendimento[];
+                }) as IAtendimento[];
 
-            setAtendimento(data);
-            setIsLogin(false);
-        });
+                setAtendimento(data);
+                setIsLogin(false);
+            });
 
         return () => subscribe();
-    },); 
-    function deletarCliente(id: string) {
+    },);
+
+    async function carregarCliente() {
+        setIsLogin(true);
+
+        const resultado = await firestore()
+            .collection('cliente')
+            .doc(id)
+            .get();
+
+        const cliente = {
+            id: resultado.id,
+            ...resultado.data()
+        } as IClientes;
+
+        setNome(cliente.nome);
+        setCpf(cliente.cpf);
+        setDataNasc(cliente.dataNasc);
+        setCidade(cliente.cidade);
+        setBairro(cliente.bairro);
+        setEndereco(cliente.endereco)
+        
+        setIsLogin(false);
+    };
+
+    function deletarAtend(id: string) {
         setIsLogin(true);
 
         firestore()
@@ -39,43 +73,51 @@ export default ({ navigation, route }: ListAtendProps) => {
             .doc(id)
             .delete()
             .then(() => {
-                Alert.alert("Cliente", "Removido com sucesso")
+                Alert.alert("Atendimento", "Removido com sucesso")
                 navigation.navigate('TelaInicial')
             })
             .catch((error) => console.log(error))
             .finally(() => setIsLogin(false))
     }
-    
-    return(
+
+    return (
         <View>
-            <Text style={{fontSize: 30, color: 'black'}}>Agenda de Atendimentos</Text>
+            <Text style={{ fontSize: 30, color: 'black' }}>Agenda de Atendimentos</Text>
             <FlatList
-            data={atendimento}
-            renderItem={(info) => {
-                return (
-                    <View style={styles.card}>
-                        <Text style={{color: 'black'}}>{info.index}</Text>
-                        <Text style={{fontSize: 20, color: 'black'}}>{info.item.cliente}</Text>
-                        <Text style={styles.caixa_texto}>{info.item.dataHora}</Text>
-                        <Text style={styles.caixa_texto}>{info.item.descricao}</Text>
-                        <Pressable
-                                onPress={() => deletarCliente(info.item.id)}>
-                                <Text style={styles.botao_excluir}>
-                                    X
+                data={atendimento}
+                renderItem={(info) => {
+                    return (
+                        <View style={styles.card}>
+                            <Text style={{ color: 'black' }}>{info.index}</Text>
+                            <Text style={{ fontSize: 20, color: 'black' }}>{info.item.cliente}</Text>
+                            <Text style={styles.caixa_texto}>{info.item.dataHora}</Text>
+                            <Text style={styles.caixa_texto}>{info.item.descricao}</Text>
+
+                            <View style={styles.container_botoes}>
+                                <Pressable
+                                    style={styles.botao_excluir}
+                                    onPress={() => deletarAtend(info.item.idAtend)}>
+                                    <Text >
+                                        X
                                     </Text>
-                            </Pressable>
-                            
-                            <Pressable
-                                style={styles.botao_alterar}
-                                onPress={() => { navigation.navigate('AlterarAtend', {id: info.item.cliente})}}>
-                                <Text >
-                                    ✏️
+                                </Pressable>
+
+                                <Pressable
+                                    style={styles.botao_alterar}
+                                    onPress={() => { navigation.navigate('AlterarAtend', { 
+                                        idAtend: info.item.idAtend,
+                                        dataHora: info.item.dataHora,
+                                        descricao: info.item.descricao }) }}>
+                                    <Text >
+                                        ✏️
                                     </Text>
-                            </Pressable>
-                    </View>
-                );
-            }}>
-                
+                                </Pressable>
+                            </View>
+
+                        </View>
+                    );
+                }}>
+
             </FlatList>
         </View>
     );
@@ -92,28 +134,28 @@ const styles = StyleSheet.create({
         margin: 10,
     },
     botao_excluir: {
-        width: 150,
-        height: 100,
-        backgroundColor: '#FFFACD',
-        color: 'red',
-        justifyContent: 'space-around',
-        alignItems: 'flex-end',
-        flexDirection: 'row-reverse',
-        left: 200,
-        
+        width: 80,
+        height: 50,
+        backgroundColor: 'red',
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 15,
     },
     botao_alterar: {
         width: 100,
-        height: 100,
-        backgroundColor: 'red',
-        justifyContent: 'space-around',
-        alignItems: 'flex-end',
-        flexDirection: 'row-reverse',
-        left: 200,
+        height: 50,
+        backgroundColor: 'green',
+        justifyContent: 'center',
+        alignItems: 'center',
+        left: 50,
+        borderRadius: 15,
     },
     caixa_texto: {
         color: 'black',
-        height: 'auto',
-        alignItems: 'flex-end'
+    },
+    container_botoes: {
+        marginTop: 30,
+        flexDirection: 'row',
+
     },
 });

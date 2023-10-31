@@ -1,5 +1,5 @@
 export type IAtendimento = {
-    id: string;
+    idAtend: string;
     cliente: string;
     dataHora: string,
     descricao: string,

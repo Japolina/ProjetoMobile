@@ -68,23 +68,48 @@ export default ({ navigation, route }: ListClientesProps) => {
                             <Text style={{ color: 'black' }}>{info.index}</Text>
                             <Text style={{ fontSize: 20, color: 'black' }}>{info.item.nome}</Text>
                             <Text style={styles.caixa_texto}>CPF: {info.item.cpf}</Text>
-                            <Text style={styles.caixa_texto}>Endereço: {info.item.endereco}</Text>
                             <Text style={styles.caixa_texto}>Data Nascimento: {info.item.dataNasc}</Text>
-                            <Pressable
+                            <Text style={styles.caixa_texto}>Cidade: {info.item.cidade}</Text>
+                            <Text style={styles.caixa_texto}>Bairro: {info.item.bairro}</Text>
+                            <Text style={styles.caixa_texto}>Endereço: {info.item.endereco}</Text>
+                            
+
+                            <View style={styles.container_botoes}>
+                                <Pressable
+                                style={styles.botao_excluir}
                                 onPress={() => deletarCliente(info.item.id)}>
-                                <Text style={styles.botao_excluir}>
+                                <Text >
                                     X
                                 </Text>
                             </Pressable>
 
                             <Pressable
                                 style={styles.botao_alterar}
-                                onPress={() => { navigation.navigate('AlterarCliente',{id: info.item.id, nome: info.item.nome,
-                                cpf:info.item.cpf, endereco: info.item.endereco, dataNasc: info.item.dataNasc }) }}>
+                                onPress={() => {
+                                    navigation.navigate('AlterarCliente', {
+                                        id: info.item.id, nome: info.item.nome,
+                                        cpf: info.item.cpf, cidade: info.item.cidade, 
+                                        bairro: info.item.bairro, endereco: info.item.endereco, 
+                                        dataNasc: info.item.dataNasc
+                                    })
+                                }}>
                                 <Text >
                                     ✏️
                                 </Text>
                             </Pressable>
+
+                            <Pressable
+                                style={styles.botao_atend}
+                                onPress={() => {
+                                    navigation.navigate('CadastroAtend')
+                                }}>
+                                <Text >
+                                    Atendimento
+                                </Text>
+                            </Pressable>
+
+                            </View>
+                            
                         </View>
                     );
                 }}>
@@ -105,28 +130,37 @@ const styles = StyleSheet.create({
         margin: 10,
     },
     botao_excluir: {
-        width: 150,
-        height: 100,
-        backgroundColor: '#FFFACD',
-        color: 'red',
-        justifyContent: 'space-around',
-        alignItems: 'flex-end',
-        flexDirection: 'row-reverse',
-        left: 200,
-
+        width: 80,
+        height: 50,
+        backgroundColor: 'red',
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 15,
     },
     botao_alterar: {
         width: 100,
-        height: 100,
-        backgroundColor: 'red',
-        justifyContent: 'space-around',
-        alignItems: 'flex-end',
-        flexDirection: 'row-reverse',
-        left: 200,
+        height: 50,
+        backgroundColor: 'green',
+        justifyContent: 'center',
+        alignItems: 'center',
+        left: 40,
+        borderRadius: 15,
+    },
+    botao_atend: {
+        width: 100,
+        height: 50,
+        backgroundColor: 'green',
+        justifyContent: 'center',
+        alignItems: 'center',
+        left: 70,
+        borderRadius: 15,
     },
     caixa_texto: {
         color: 'black',
-        height: 'auto',
-        alignItems: 'flex-end'
-    }
+    },
+    container_botoes: {
+        marginTop: 30,
+        flexDirection: 'row',
+
+    },
 });

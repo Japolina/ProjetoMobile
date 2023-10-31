@@ -11,6 +11,8 @@ export default ({ navigation, route }: AlterarClienteProps) => {
     const [id,] = useState(route.params.id);
     const [nome, setNome] = useState(route.params.nome);
     const [cpf, setCpf] = useState(route.params.cpf);
+    const [cidade, setCidade] = useState(route.params.cidade);
+    const [bairro, setBairro] = useState(route.params.bairro);
     const [endereco, setEndereco] = useState(route.params.endereco);
     const [dataNasc, setDataNasc] = useState(route.params.dataNasc);
     const [isLogin, setIsLogin] = useState(false);
@@ -30,8 +32,11 @@ export default ({ navigation, route }: AlterarClienteProps) => {
 
         setNome(cliente.nome);
         setCpf(cliente.cpf);
+        setDataNasc(cliente.dataNasc);
+        setCidade(cliente.cidade);
+        setBairro(cliente.bairro);
         setEndereco(cliente.endereco)
-        setDataNasc(cliente.dataNasc)
+        
         setIsLogin(false);
     };
 
@@ -48,21 +53,22 @@ export default ({ navigation, route }: AlterarClienteProps) => {
             .update({
                 nome,
                 cpf,
-                endereco,
                 dataNasc,
+                cidade,
+                bairro,
+                endereco,
                 created_at: firestore.FieldValue.serverTimestamp()
             })
             .then(() => {
                 Alert.alert("Cliente", "Alterado com sucesso")
-                navigation.goBack();
+                navigation.navigate('ListaAtend');
             })
     }
 
     return (
         <View style={styles.container}>
-            <Carregamento isLogin={isLogin} />
             <View>
-                <Text style={{ color: 'black', fontSize: 25}}> Alterar Cliente </Text>
+                <Text style={{ color: 'black', fontSize: 25 }}> Alterar Cliente </Text>
 
                 <Text style={{ color: 'black' }}> Nome</Text>
                 <TextInput
@@ -73,15 +79,7 @@ export default ({ navigation, route }: AlterarClienteProps) => {
                 <Text style={{ color: 'black' }}> CPF </Text>
                 <TextInput
                     style={styles.caixa_texto}
-                    value={cpf}/>
-
-
-                <Text style={{ color: 'black' }}>Endereço</Text>
-                <TextInput
-                    style={styles.caixa_texto}
-                    value={endereco}
-                    onChangeText={(text) => { setEndereco(text) }} />
-
+                    value={cpf} />
                 <Text style={{ color: 'black' }}> Data Nascimento:  </Text>
                 <TextInput
                     multiline
@@ -90,14 +88,32 @@ export default ({ navigation, route }: AlterarClienteProps) => {
                     style={styles.caixa_texto}
                     value={dataNasc}
                     onChangeText={(int) => { setDataNasc(int) }} />
+
+                <Text style={{ color: 'black' }}>Cidade</Text>
+                <TextInput
+                    style={styles.caixa_texto}
+                    value={cidade} />
+
+                <Text style={{ color: 'black' }}>Bairro</Text>
+                <TextInput
+                    style={styles.caixa_texto}
+                    value={bairro} />
+
+                <Text style={{ color: 'black' }}>Endereço</Text>
+                <TextInput
+                    style={styles.caixa_texto}
+                    value={endereco}
+                    onChangeText={(text) => { setEndereco(text) }} />
+
+
             </View>
             <View style={styles.container_botoes}>
-            <Pressable
-                style={styles.botao}
-                onPress={() => alterar()}
-                disabled={isLogin}>
-                <Text style={styles.desc_botao}> Alterar</Text>
-            </Pressable>
+                <Pressable
+                    style={styles.botao}
+                    onPress={() => alterar()}
+                    disabled={isLogin}>
+                    <Text style={styles.desc_botao}> Alterar</Text>
+                </Pressable>
             </View>
         </View >
     );
@@ -114,15 +130,18 @@ const styles = StyleSheet.create({
         height: 'auto',
         color: 'black',
         borderWidth: 1,
+        borderRadius: 15,
     },
     botao: {
         justifyContent: 'center',
         backgroundColor: 'purple',
         paddingVertical: 10,
         paddingHorizontal: 30,
+        borderRadius: 15,
     },
     desc_botao: {
         fontSize: 20,
+
     },
     text_area: {
         borderWidth: 1,
@@ -138,6 +157,7 @@ const styles = StyleSheet.create({
     container_login: {
         flex: 1,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+
     },
 })

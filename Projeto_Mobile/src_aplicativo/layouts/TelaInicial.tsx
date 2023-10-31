@@ -9,9 +9,7 @@ const TelaInicial= ({ navigation, route }: TelaInicialProps) => {
     return (
         <>
             <View style={styles.botao} />
-            <Button
-                title="Redefinir Senha"
-                onPress={() => navigation.navigate('TelaInicial')} />
+
             <Button
                 title="Cadastro de Clientes"
                 onPress={() => navigation.navigate('CadastroCliente')} />

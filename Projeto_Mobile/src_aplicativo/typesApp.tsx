@@ -10,13 +10,20 @@ type RootStackParamListUsu = {
   ListaClientes: undefined;
   ListaAtend: undefined;
   AlterarCliente: {
-    id: string; 
+    id: string;
     nome: string;
     cpf: string;
-    endereco: string;
     dataNasc: string;
+    cidade: string;
+    bairro: string;
+    endereco: string;
+
   };
-  AlterarAtend: { id: string; };
+  AlterarAtend: {
+    idAtend: string;
+    dataHora: string;
+    descricao: string;
+  };
 };
 
 
